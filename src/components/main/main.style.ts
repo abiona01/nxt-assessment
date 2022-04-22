@@ -5,7 +5,15 @@ export const MainBox = styled(Box)`
 width: 100%;
 box-sizing: border-box;
 .MuiPaper-root.MuiTableContainer-root{
-    margin-top: 0.4rem;
+    margin-top: 0.2rem;
+    overflow-x: scroll;
+    
+    &::-webkit-scrollbar {
+    display: none;
+}
+-ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none; 
+  -webkit-overflow-style: none;
     .MuiTable-root{
         .MuiTableHead-root{
             .MuiTableRow-head{

@@ -9,4 +9,7 @@ export const SidebarBox = styled(Box)`
   .MuiTypography-root.MuiTypography-body1 {
     color: white;
   }
+  @media only screen and (max-width: 700px){
+    display: none;
+  }
 `;
