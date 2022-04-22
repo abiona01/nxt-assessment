@@ -2,11 +2,8 @@ import styled from "styled-components"
 import { Box, Typography } from "@mui/material"
 
 export const MainBox = styled(Box)`
-height: 100%;
-width: 85%;
-background-color: #D4E6EA;
+width: 100%;
 box-sizing: border-box;
-padding: 0.5rem 2rem 0;
 .MuiPaper-root.MuiTableContainer-root{
     margin-top: 0.4rem;
     .MuiTable-root{

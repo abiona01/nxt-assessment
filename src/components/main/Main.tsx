@@ -6,9 +6,8 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import { ControlBox, ControlBoxChild, Heading, MainBox } from "./main.style";
+
+import { MainBox } from "./main.style";
 import { Button } from "@mui/material";
 
 type Props = {
@@ -17,7 +16,7 @@ type Props = {
 const Main = ({ data }: Props) => {
   return (
     <MainBox>
-      <Heading variant="h6">current page 1</Heading>
+    
       {data && (
      <>
         <TableContainer component={Paper}>
@@ -51,18 +50,7 @@ const Main = ({ data }: Props) => {
             </TableBody>
           </Table>
         </TableContainer>
-        <ControlBox>
-        <ControlBoxChild>
-<ArrowBackIosIcon />
-<Button variant="text">1</Button>
-<Button variant="text">2</Button>
-<Button variant="text">3</Button>
-<Button variant="text">4</Button>
-<Button variant="text">5</Button>
-<Button variant="text">6</Button>
-<ArrowForwardIosIcon />
-        </ControlBoxChild>
-        </ControlBox>
+        
      </>
 
         

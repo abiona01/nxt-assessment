@@ -1,8 +1,11 @@
 import {useState, useEffect} from 'react';
 import axios from 'axios';
-import { AppContainer } from './App.style';
+import { AppChild, AppContainer, ControlBox, ControlBoxChild, Heading } from './App.style';
 import Main from './components/main/Main';
 import Sidebar from './components/sidebar/Sidebar';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { Button } from '@mui/material';
 
 
 
@@ -19,7 +22,23 @@ useEffect(() => {
   return (
     <AppContainer>
      <Sidebar />
-     <Main data={data} />
+     <AppChild>
+         <Heading variant="h6">current page 1</Heading>
+<Main data={data} />
+<ControlBox>
+        <ControlBoxChild>
+<ArrowBackIosIcon />
+<Button variant="text">1</Button>
+<Button variant="text">2</Button>
+<Button variant="text">3</Button>
+<Button variant="text">4</Button>
+<Button variant="text">5</Button>
+<Button variant="text">6</Button>
+<ArrowForwardIosIcon />
+        </ControlBoxChild>
+        </ControlBox>
+     </AppChild>
+     
     </AppContainer>
   );
 }
