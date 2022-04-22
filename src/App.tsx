@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import ReactLoading from "react-loading";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import {
   AppChild,
   AppContainer,
@@ -26,22 +29,37 @@ function App() {
     } else {
       setLoading(true);
     }
-
-    const response = await axios.get(
-      `https://swapi.dev/api/planets/?page=${page}`
-    );
-    setData(response.data.results);
-    setLoading(false);
-    setMiniLoading(false);
-    console.log(response.data.results);
+    axios
+      .get(`https://swapi.dev/api/planets/?page=${page}`)
+      .then((response) => {
+        setData(response.data.results);
+        setLoading(false);
+        setMiniLoading(false);
+      })
+      .catch((error) => {
+        setLoading(false);
+        setMiniLoading(false);
+        toast.error("Error, try later");
+      });
+    // console.log(response.data.results);
   };
+
   useEffect(() => {
     getData(page);
   }, [page]);
 
-  //   const changePage = (page: number) =>{
-  // setPage(page);
-  //   }
+  const getNextPage = () => {
+    if (page >= 1 && page < 6) {
+      setPage(page + 1);
+      setMiniLoading(true);
+    }
+  };
+  const getPrevPage = () => {
+    if (page > 1 && page <= 6) {
+      setPage(page - 1);
+      setMiniLoading(true);
+    }
+  };
   return (
     <AppContainer>
       {loading ? (
@@ -51,24 +69,40 @@ function App() {
           {" "}
           <Sidebar />
           <AppChild>
-           <Header> <Heading variant="h6">current page 1</Heading>
-           {miniLoading ? (<ReactLoading type="spin" color="#0F0E1D" height={20} width={25} />) : " "}
-           </Header>
-            <Main data={data} />
+            <Header>
+              {" "}
+              <Heading variant="h6">current page {page}</Heading>
+              {miniLoading ? (
+                <ReactLoading
+                  type="spin"
+                  color="#0F0E1D"
+                  height={20}
+                  width={25}
+                />
+              ) : (
+                " "
+              )}
+            </Header>
+            <Main data={data} page={page} />
             <ControlBox>
               <ControlBoxChild>
-                <ArrowBackIosIcon />
+                <button onClick={getPrevPage}>
+                  {" "}
+                  <ArrowBackIosIcon />
+                </button>
                 <Button
                   variant="text"
+                  className={page === 1 ? "active" : "inactive"}
                   onClick={() => {
                     setPage(1);
-                    setMiniLoading(true);
+                    if (page !== 1) setMiniLoading(true);
                   }}
                 >
                   1
                 </Button>
                 <Button
                   variant="text"
+                  className={page === 2 ? "active" : "inactive"}
                   onClick={() => {
                     setPage(2);
                     setMiniLoading(true);
@@ -78,6 +112,7 @@ function App() {
                 </Button>
                 <Button
                   variant="text"
+                  className={page === 3 ? "active" : "inactive"}
                   onClick={() => {
                     setPage(3);
                     setMiniLoading(true);
@@ -87,6 +122,7 @@ function App() {
                 </Button>
                 <Button
                   variant="text"
+                  className={page === 4 ? "active" : "inactive"}
                   onClick={() => {
                     setPage(4);
                   }}
@@ -95,6 +131,7 @@ function App() {
                 </Button>
                 <Button
                   variant="text"
+                  className={page === 5 ? "active" : "inactive"}
                   onClick={() => {
                     setPage(5);
                     setMiniLoading(true);
@@ -104,6 +141,7 @@ function App() {
                 </Button>
                 <Button
                   variant="text"
+                  className={page === 6 ? "active" : "inactive"}
                   onClick={() => {
                     setPage(6);
                     setMiniLoading(true);
@@ -111,12 +149,19 @@ function App() {
                 >
                   6
                 </Button>
-                <ArrowForwardIosIcon />
+                <button onClick={getNextPage}>
+                  <ArrowForwardIosIcon />
+                </button>
               </ControlBoxChild>
             </ControlBox>
           </AppChild>
         </>
       )}
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+      />
     </AppContainer>
   );
 }

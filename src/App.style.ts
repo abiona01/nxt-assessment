@@ -52,11 +52,17 @@ border-radius: 0.5rem;
 background-color: #B0AEB0;
 display: flex;
 align-items: center;
+button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
 .MuiSvgIcon-root{
     width: 1rem;
     height:1rem;
     fill: white;
     margin-right: 2px;
+    cursor: pointer;
     &:last-of-type{
         margin-right: 0;
         margin-left: 2px;
@@ -68,11 +74,14 @@ align-items: center;
     color: white;
     margin: 0 2px;
     line-height: 1;
-    &:hover{
+    /* &:hover{
         background-color: #0F0E1D;
     }
     &:focus{
         background-color: #0F0E1D;
-    }
+    } */
+}
+.active {
+      background-color: #0F0E1D !important;
 }
 `

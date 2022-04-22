@@ -10,8 +10,9 @@ import { MainBox } from "./main.style";
 
 type Props = {
   data: Array<any>;
+  page: number
 };
-const Main = ({ data }: Props) => {
+const Main = ({ data, page }: Props) => {
   return (
     <MainBox>
     
@@ -34,9 +35,13 @@ const Main = ({ data }: Props) => {
                 const { name, climate, terrain, population, created } =
                   dataItem;
                 const date = created?.split("T")[0];
+                let format = page -1;
+let extraFormat = format * 10
+                
                 return (
                   <TableRow key={index}>
-                    <TableCell>{index + 1}</TableCell>
+                      {page ===1 ? (<TableCell>{index + 1}</TableCell>) : ( <TableCell>{index +1 + extraFormat}</TableCell>)}
+                
                     <TableCell>{name}</TableCell>
                     <TableCell>{climate}</TableCell>
                     <TableCell>{terrain}</TableCell>
